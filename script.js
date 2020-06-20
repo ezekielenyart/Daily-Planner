@@ -26,13 +26,14 @@ function buildRow(hour) {
     hourEl.text(NOW.format("hA"))
 
     var description = $("<textarea>")
-    description.addClass("description col-10")
-        if (moment().valueOf == NOW.value)
-        description.addClass("present")
-         else if (moment().valueOf > NOW.value)
-        description.addClass("past");
-        else {
-        description.addClass("future")
+    description.addClass("description col-10" + descColor)
+    var current = moment()
+    var descColor = 'future'
+        if (moment().isSame(NOW, "hour")){
+        descColor = "present"
+        }
+        else if (moment().isAfter(NOW)){
+        descColor = "past";
         }
     description.val(action)
    
